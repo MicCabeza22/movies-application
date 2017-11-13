@@ -20,3 +20,6 @@ getMovies().then((movies) => {
   alert('Oh no! Something went wrong.\nCheck the console for details.');
   console.log(error);
 });
+
+$(".page-loading").delay(600).fadeOut();
+$(".page-loaded").delay(1200).fadeIn();
