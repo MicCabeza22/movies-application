@@ -7,13 +7,23 @@
     </head>
     <body>
         <div class="container">
-            <div class="page-loading">
+            <div id="page-loading">
                 <h1>Loading...</h1>
             </div>
-            <div class="page-loaded">
-                <h1>Hello There!</h1>
-                <p>To get started, edit <code>src/index.js</code>.</p>
+
+            <div id="page-loaded">
+                <div class="row">
+                    <div class="column one-fourth"><b>ID #</b></div>
+                    <div class="column one-half"><b>Title</b></div>
+                    <div class="column one-fourth"><b>Rating</b></div>
+                </div>
+                <hr>
+                <div id="movieList"></div>
             </div>
+            <!--<div class="page-loaded">-->
+                <!--<h1>Hello There!</h1>-->
+                <!--<p>To get started, edit <code>src/index.js</code>.</p>-->
+            <!--</div>-->
         </div>
 
         <script src="/main.js"></script>

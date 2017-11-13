@@ -2,6 +2,10 @@ html, body {
     height: 100%;
 }
 
+hr {
+    width: 80%;
+}
+
 .container {
     position: relative;
     top: 50%;
@@ -9,6 +13,34 @@ html, body {
     text-align: center;
 }
 
-.page-loaded {
+.row {
+    width: 100%;
+}
+
+.one-half, .one-third, .one-fourth, .one-sixth, .one-twelfth {
+    float: left;
+}
+
+.one-half {
+    width: 50%;
+}
+
+.one-third {
+    width: calc(100% / 3);
+}
+
+.one-fourth {
+    width: 25%;
+}
+
+.one-sixth {
+    width: calc(100% / 6);
+}
+
+.one-twelfth {
+    width: calc(100% / 12);
+}
+
+#page-loaded {
     display: none;
 }

@@ -12,14 +12,19 @@ sayHello('World');
 const {getMovies} = require('./api.js');
 
 getMovies().then((movies) => {
-  console.log('Here are all the movies:');
   movies.forEach(({title, rating, id}) => {
-    console.log(`id#${id} - ${title} - rating: ${rating}`);
+    $("#movieList")
+        .append(`<div class="row">`)
+        .append(`<div class="column one-fourth">${id}</div>`)
+        .append(`<div class="column one-half">${title}</div>`)
+        .append(`<div class="column one-fourth">${rating}</div>`)
+        .append(`</div>`)
+        .append(`<hr>`);
   });
 }).catch((error) => {
   alert('Oh no! Something went wrong.\nCheck the console for details.');
   console.log(error);
 });
 
-$(".page-loading").delay(600).fadeOut();
-$(".page-loaded").delay(1200).fadeIn();
+$("#page-loading").delay(600).fadeOut();
+$("#page-loaded").delay(1200).fadeIn();
