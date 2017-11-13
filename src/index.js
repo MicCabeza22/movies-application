@@ -1,7 +1,9 @@
 /**
  * es6 modules and imports
  */
-import sayHello from './hello';
+import sayHello from './hello.js';
+import $ from 'jquery';
+
 sayHello('World');
 
 /**
@@ -15,6 +17,6 @@ getMovies().then((movies) => {
     console.log(`id#${id} - ${title} - rating: ${rating}`);
   });
 }).catch((error) => {
-  alert('Oh no! Something went wrong.\nCheck the console for details.')
+  alert('Oh no! Something went wrong.\nCheck the console for details.');
   console.log(error);
 });
