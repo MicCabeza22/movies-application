@@ -3,7 +3,7 @@ html, body {
 }
 
 hr {
-    width: 80%;
+    width: 100%;
 }
 
 .container {
@@ -15,6 +15,10 @@ hr {
 
 .row {
     width: 100%;
+}
+
+.column {
+    padding-bottom: 6px;
 }
 
 .one-half, .one-third, .one-fourth, .one-sixth, .one-twelfth {
