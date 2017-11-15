@@ -78,12 +78,27 @@ function addMovie(title, rating) {
 
 //  Add button functionality to edit a movie in the list based on user input.
 $(".edit").click(function () {
-  editTitle = $("#title").val();
-  editTitle = $("#rating").val();
+  editTitle = movie.title;
+  editRating = movie.rating;
 
   editMovie(editTitle, editRating);
 });
 
 function editMovie(title, rating) {
-
+  $("#editTitle").val(title);
+  $("#editRating").val(rating);
 }
+
+$("#confirmEdit").click(function () {
+  getMovies().then((movies) => {
+    movies.forEach(({title, rating}) => {
+      $("#movieList")
+        .html(`<div class="column one-fourth">${title}</div>`)
+        .html(`<div class="column one-fourth">${rating}</div>`);
+    });
+  })
+  .catch((error) => {
+    alert("Oh no! Something went wrong.\nCheck the console for details.");
+    console.log(error);
+  });
+});
