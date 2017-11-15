@@ -1,19 +1,29 @@
 /**
  * es6 modules and imports
  */
-import sayHello from './hello.js';
-import $ from 'jquery';
+import sayHello from "./hello.js";
+import $ from "jquery";
 
-sayHello('World');
+sayHello("World");
 
 /**
  * require style imports
  */
-const {getMovies} = require('./api.js');
+const {getMovies} = require("./api.js");
 
+let editTitle = "";
+let editRating = 1;
+let inputTitle = "";
+let inputRating = 1;
+let movieListing = {};
+let options = {};
+let url = "";
+
+//  Loading "animation"
 $("#page-loading").delay(600).fadeOut();
 $("#page-loaded").delay(1200).fadeIn();
 
+//  Generate a list of movies from an external database.
 getMovies().then((movies) => {
   movies.forEach(({title, rating, id}) => {
     $("#movieList")
@@ -21,34 +31,35 @@ getMovies().then((movies) => {
       .append(`<div class="column one-fourth">${id}</div>`)
       .append(`<div class="column one-fourth">${title}</div>`)
       .append(`<div class="column one-fourth">${rating}</div>`)
-      .append(`<div class="column one-fourth"><button id="edit" type="button">Edit</button>
-        <button id="delete" type="button">Delete</button></div>`)
+      .append(`<div class="column one-fourth"><button class="edit" type="button">Edit</button>
+        <button class="delete" type="button">Delete</button></div>`)
       .append(`</div>`)
       .append(`<hr>`);
 
     movies.id++;
   });
 }).catch((error) => {
-  alert('Oh no! Something went wrong.\nCheck the console for details.');
+  alert("Oh no! Something went wrong.\nCheck the console for details.");
   console.log(error);
 });
 
+//  Add button functionality to add a movie to the list based on user input.
 $("#addMovie").click(function () {
-  let inputTitle = $("#title").val();
-  let inputRating = $("#rating").val();
+  inputTitle = $("#title").val();
+  inputRating = $("#rating").val();
 
   addMovie(inputTitle, inputRating)
 });
 
 function addMovie(title, rating) {
-  const movieListing = {title, rating};
-  const url = "http://localhost:3000/movies";
-  const options = {
+  movieListing = {title, rating};
+  url = "http://localhost:3000/movies";
+  options = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(movieListing),
+      },
+      body: JSON.stringify(movieListing),
   };
 
   if (title === "") {
@@ -65,25 +76,14 @@ function addMovie(title, rating) {
   }
 }
 
-$("#delete").click(function () {
-  deleteMovie();
+//  Add button functionality to edit a movie in the list based on user input.
+$(".edit").click(function () {
+  editTitle = $("#title").val();
+  editTitle = $("#rating").val();
+
+  editMovie(editTitle, editRating);
 });
 
-function deleteMovie(title, rating) {
-  const movieListing = {title, rating};
-  const url = "http://localhost:3000/movies";
-  const options = {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(movieListing),
-  };
+function editMovie(title, rating) {
 
-  fetch(url, options)
-    .then(alert("Movie successfully added!"))
-    .catch((error) => {
-      alert("An error has occurred. Please check the console.");
-      console.log(error);
-    });
 }
